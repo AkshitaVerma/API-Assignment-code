@@ -41,7 +41,7 @@ public class APIAssign {
 	public void Delete() {
 		// First fetch the response in the response container
 		Response resp = RestAssured.given().header("Content-Type", "application/json").when()
-				.delete("http://localhost:3000/courses/6");
+				.delete("http://localhost:3000/courses/?copies=6");
 
 		// Extract the response code and response message and print it
 		System.out.println(resp.statusCode());
@@ -63,11 +63,11 @@ public class APIAssign {
 		System.out.println("The status Code is :" + resp.statusCode());
 		System.out.println("The status response line s :" + resp.statusLine());
 		System.out.println("********************************************************************");
-		Response resp2 = RestAssured.get("http://localhost:3000/courses/4");
+		Response resp2 = RestAssured.get("http://localhost:3000/courses/?copies=4");
 		System.out.println(resp2.asString());
 	}
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void Patch() {
 		// For PUT request , we always have to provide the ID fr which you wants to do
 		// the changes
@@ -84,12 +84,12 @@ public class APIAssign {
 		System.out.println("The status Code is :" + resp.statusCode());
 		System.out.println("The status response line s :" + resp.statusLine());
 		System.out.println("********************************************************************");
-		Response resp2 = RestAssured.get("http://localhost:3000/courses/4");
+		Response resp2 = RestAssured.get("http://localhost:3000/courses/?copies=4");
 		System.out.println(resp2.asString());
 	}
 	
 	// Assertions 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void Assertions() {
         Response resp = RestAssured.given()
                 .queryParam("copies", "4")
@@ -104,7 +104,7 @@ public class APIAssign {
         assertEquals(200, resp.statusCode());
         assertNotNull( resp.statusCode());
         System.out.println("********************************************************************");
-        Response resp2 = RestAssured.get("http://localhost:3000/courses/3");
+        Response resp2 = RestAssured.get("http://localhost:3000/courses/?copies=3");
         System.out.println(resp2.asString());
 
 
